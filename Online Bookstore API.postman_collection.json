@@ -1,0 +1,88 @@
+{
+  "info": {
+    "name": "Online Bookstore Management API",
+    "description": "Postman collection for testing the Online Bookstore Management API assignment.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "bookId",
+      "value": "replace-with-book-id"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/"
+      }
+    },
+    {
+      "name": "Get All Books",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/books"
+      }
+    },
+    {
+      "name": "Search Books By Author And Genre",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/books?author=Robert&genre=Programming&page=1&limit=10"
+      }
+    },
+    {
+      "name": "Get Single Book",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/books/{{bookId}}"
+      }
+    },
+    {
+      "name": "Create Book",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Code\",\n  \"author\": \"Robert C. Martin\",\n  \"genre\": \"Programming\",\n  \"price\": 25.99,\n  \"publishedDate\": \"2008-08-01\",\n  \"inStock\": true\n}"
+        },
+        "url": "{{baseUrl}}/api/books"
+      }
+    },
+    {
+      "name": "Update Book",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Code Updated\",\n  \"author\": \"Robert C. Martin\",\n  \"genre\": \"Software Engineering\",\n  \"price\": 29.99,\n  \"publishedDate\": \"2008-08-01\",\n  \"inStock\": true\n}"
+        },
+        "url": "{{baseUrl}}/api/books/{{bookId}}"
+      }
+    },
+    {
+      "name": "Delete Book",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/books/{{bookId}}"
+      }
+    }
+  ]
+}
